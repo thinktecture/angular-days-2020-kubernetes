@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: regular
+  namespace: ngdays-2020-canary-regular
+spec:
+  selector:
+    app: frontend-v1
+  ports:
+    - port: 8080
+      targetPort: 80

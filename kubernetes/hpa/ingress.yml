@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: deployment-ingress
+  namespace: ngdays-2020-hpa
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+spec:
+  tls:
+  - hosts:
+    - hpa.thinktecture-demos.com
+    secretName: letsencrypt-tls
+  rules:
+    - host: hpa.thinktecture-demos.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: frontend
+              servicePort: 8080

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: canary
+  namespace: ngdays-2020-canary-preview
+spec:
+  selector:
+    app: frontend-v2
+  ports:
+    - port: 8080
+      targetPort: 80

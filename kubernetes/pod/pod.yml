@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend-v1
+  namespace: ngdays-2020-pod
+  labels:
+    name: frontend-v1
+spec:
+  containers:
+    - name: frontend-v1
+      image: thnsdev.azurecr.io/ngdays/frontend-v1:0.0.1
+      resources:
+        limits:
+          memory: "64Mi"
+          cpu: "100m"
+        requests:
+          memory: "32Mi"
+          cpu: "50m"
+      ports:
+        - containerPort: 80
+          name: http

@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: canary-ingress
+  namespace: ngdays-2020-canary-regular
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+spec:
+  tls:
+  - hosts:
+    - canary.thinktecture-demos.com
+    secretName: letsencrypt-tls
+  rules:
+    - host: canary.thinktecture-demos.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: regular
+              servicePort: 8080

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: preview
+  namespace: ngdays-2020-canary-preview
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend-v2
+  template:
+    metadata:
+      labels:
+        app: frontend-v2
+    spec:
+      containers:
+        - name: frontend
+          image: thnsdev.azurecr.io/ngdays/frontend-v2:0.0.1
+          resources:
+            limits:
+              memory: "64Mi"
+              cpu: "100m"
+            requests:
+              memory: "32Mi"
+              cpu: "50m"
+          ports:
+            - containerPort: 80
